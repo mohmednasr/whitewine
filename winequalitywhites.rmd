@@ -67,15 +67,115 @@ forget to add a comment after each plot or closely-related group of plots!
 There should be multiple code chunks and text sections; the first one below is
 just to help you get started.
 
-```{r echo=FALSE, Univariate_Plots}
+I will Explore quality variablbe to know the distribution of it.
 
+```{r echo=FALSE,message= FALSE , warning= FALSE}
+ggplot(aes(x= quality), data = whitewine)+
+  geom_histogram()
+```
+```{r echo=FALSE,message= FALSE , warning= FALSE}
+summary(whitewine$quality)
 ```
 
-> **Tip**: Make sure that you leave a blank line between the start / end of
-each code block and the end / start of your Markdown text so that it is
-formatted nicely in the knitted text. Note as well that text on consecutive
-lines is treated as a single space. Make sure you have a blank line between
-your paragraphs so that they too are formatted for easy readability.
+I improve the graph to get better comment for this graph by make breaks for the x scale and change the bin width becase this varibale have range between 6 intgers numbers.
+
+```{r echo=FALSE,message= FALSE , warning= FALSE}
+ggplot(aes(x= quality), data = whitewine)+
+  geom_histogram(binwidth = 1)+
+  scale_x_continuous(breaks = seq(3,9,1))
+```
+
+More than 2300 wines have guality grade equal 6 and more than 1400 wines have quality grade equal 5 then the nearly of 2800 wines have normal or good reaction for expert and less than 1250 wines have guality grade greater than 6, I will explore variables that help me to understand of distribution of variables.
+
+```{r echo=FALSE,message= FALSE , warning= FALSE}
+ggplot(aes(x= fixed.acidity), data = whitewine)+
+  geom_histogram()
+```
+
+Most of wine have fixed acidity between 5.5 and 8, some variable are outlier values at 12, 14.
+
+```{r echo=FALSE,message= FALSE , warning= FALSE}
+ggplot(aes(x= volatile.acidity), data = whitewine)+
+  geom_histogram()
+```
+```{r echo=FALSE,message= FALSE , warning= FALSE}
+summary(whitewine$volatile.acidity)
+```
+
+Most of wines have volatile.acitdity between 0.15 and .45 and some wines are outliers greater than 0.9.
+
+```{r echo=FALSE,message= FALSE , warning= FALSE}
+ggplot(aes(x= citric.acid), data = whitewine)+
+  geom_histogram()
+```
+```{r echo=FALSE,message= FALSE , warning= FALSE}
+ggplot(aes(x= pH), data = whitewine)+
+  geom_histogram()
+```
+
+Most of wines have pH value between 3 and 3.3.
+
+```{r echo=FALSE,message= FALSE , warning= FALSE}
+summary(whitewine$citric.acid)
+```
+
+Greater peak in the plot and most of wine have citric acid between 0.25 and 0.4.
+
+```{r echo=FALSE,message= FALSE , warning= FALSE}
+ggplot(aes(x= residual.sugar), data = whitewine)+
+  geom_histogram()
+```
+
+The graph is skewed right and I'll apply log function to understand the distribution of the variable.
+```{r echo=FALSE,message= FALSE , warning= FALSE}
+ggplot(aes(x= residual.sugar), data = whitewine)+
+  geom_histogram()+
+  scale_x_log10()
+```
+```{r echo=FALSE,message= FALSE , warning= FALSE}
+summary(whitewine$residual.sugar)
+```
+
+I notice the wines are in two group of residual sugar and some values are outliers.
+
+```{r echo=FALSE,message= FALSE , warning= FALSE}
+ggplot(aes(x= density), data = whitewine)+
+  geom_histogram()
+```
+```{r echo=FALSE,message= FALSE , warning= FALSE}
+summary(whitewine$density)
+```
+
+The almost of the wines have denisty between 0.98 to 1 and some outliers are larger than 1.
+
+```{r echo=FALSE,message= FALSE , warning= FALSE}
+ggplot(aes(x= density), data = whitewine)+
+  geom_histogram()+
+  coord_cartesian(xlim = c(0.985, 1))
+```
+
+I think that the density don't extremly control on the grade of quality because almost of wines have nearly value of density.
+
+```{r echo=FALSE,message= FALSE , warning= FALSE}
+ggplot(aes(x= chlorides), data = whitewine)+
+  geom_histogram()
+```
+```{r echo=FALSE,message= FALSE , warning= FALSE}
+summary(whitewine$chlorides)
+```
+
+The almost of wines have value of chlorides between 0 and 0.1, and I think that chlorides don't have extremly control on quality grade.
+
+```{r echo=FALSE,message= FALSE , warning= FALSE}
+ggplot(aes(x= sulphates), data = whitewine)+
+  geom_histogram()
+```
+```{r echo=FALSE,message= FALSE , warning= FALSE}
+summary(whitewine$sulphates)
+```
+
+Most of wines have sulphates values between 0.35 and 0.6 and some values are outliers.
+
 
 # Univariate Analysis
 
@@ -84,6 +184,11 @@ reflect on and summarize what you've found. Use the questions below to help you
 gather your observations and add your own if you have other thoughts!
 
 ### What is the structure of your dataset?
+There are 4,898 wines in the dataset with 12 features (fixed.acidity, volatile.acidity,
+citric.acid, residual.sugar, chlorides, free.sulfur.dioxide, total.sulfur.dioxide, density, pH, sulphates, alcohol, quality).
+other observations:
+
+* 
 
 ### What is/are the main feature(s) of interest in your dataset?
 
