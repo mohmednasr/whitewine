@@ -108,18 +108,23 @@ Most of wines have volatile.acitdity between 0.15 and .45 and some wines are out
 ggplot(aes(x= citric.acid), data = whitewine)+
   geom_histogram()
 ```
-```{r echo=FALSE,message= FALSE , warning= FALSE}
-ggplot(aes(x= pH), data = whitewine)+
-  geom_histogram()
-```
-
-Most of wines have pH value between 3 and 3.3.
-
-```{r echo=FALSE,message= FALSE , warning= FALSE}
+```{r echo = FALSE, message=FALSE, warning= FALSE}
 summary(whitewine$citric.acid)
 ```
 
 Greater peak in the plot and most of wine have citric acid between 0.25 and 0.4.
+
+
+```{r echo=FALSE,message= FALSE , warning= FALSE}
+ggplot(aes(x= pH), data = whitewine)+
+  geom_histogram()
+```
+```{r echo=FALSE,message= FALSE , warning= FALSE}
+summary(whitewine$pH)
+```
+
+Most of wines have pH value between 3 and 3.3.
+
 
 ```{r echo=FALSE,message= FALSE , warning= FALSE}
 ggplot(aes(x= residual.sugar), data = whitewine)+
@@ -176,6 +181,15 @@ summary(whitewine$sulphates)
 
 Most of wines have sulphates values between 0.35 and 0.6 and some values are outliers.
 
+```{r echo = FALSE, message= FALSE, warning = FALSE}
+ggplot(aes(x = alcohol), data = whitewine)+
+  geom_histogram()+
+  scale_x_continuous(breaks = seq(7, 15,1))
+```
+```{r echo = FALSE, message=FALSE, warning=FALSE}
+summary(whitewine$alcohol)
+```
+Most of wines alcohol value between 9 and 11.5 and I think that alcohol predicting grade of the wine quality.
 
 # Univariate Analysis
 
@@ -186,21 +200,23 @@ gather your observations and add your own if you have other thoughts!
 ### What is the structure of your dataset?
 There are 4,898 wines in the dataset with 12 features (fixed.acidity, volatile.acidity,
 citric.acid, residual.sugar, chlorides, free.sulfur.dioxide, total.sulfur.dioxide, density, pH, sulphates, alcohol, quality).
+
 other observations:
 
-* 
+* About 75% of wines have quality grade less than 6.
+* The median pH for white wines is 3.18 and the max pH 3.82.
+* The median sulphates for white wines is 0.47.
+* About 75% of wines have alcohol less tnan 11.40 and the max value equal 14.2.
 
 ### What is/are the main feature(s) of interest in your dataset?
-
+The main feature in the data set are alcohol and quality. I'd like to determine which features are best for predicting the price of a diamonds. I suspect alcohol and some combination of the other variables can be used to build a predictive model to quality of wines.
 ### What other features in the dataset do you think will help support your \
-investigation into your feature(s) of interest?
+fixed acidity, volatile acidity, citric acid, residual sugar, chlorides, free sulfur dioxide, total sulfur dioxide, density, pH,and sulphates. I think alcohol, pH,and sulphates probably contibute most to the quality after make rsearching.
 
 ### Did you create any new variables from existing variables in the dataset?
-
-### Of the features you investigated, were there any unusual distributions? \
-Did you perform any operations on the data to tidy, adjust, or change the form \
-of the data? If so, why did you do this?
-
+No
+### Of the features you investigated, were there any unusual distributions? \Did you perform any operations on the data to tidy, adjust, or change the form \of the data? If so, why did you do this?
+I log-transformed the right skewed residual.sugar distributions. The tranformed distribution for price appears bimodal with the price peaking around 2 or so and again around 10.
 
 # Bivariate Plots Section
 
