@@ -404,11 +404,16 @@ we see from model the prove of my graphs and on my writing because the varible o
 investigation. Were there features that strengthened each other in terms of \
 looking at your feature(s) of interest?
 
+I don't get new relationship in this section because the quality is mostly depended on the amount of alcohol.
+
 ### Were there any interesting or surprising interactions between features?
+
+surprising because only one variabel has strong impact on grade of quality.
 
 ### OPTIONAL: Did you create any models with your dataset? Discuss the \
 strengths and limitations of your model.
 
+I see from model the prove of my graphs and on my writing because the varible only have strong impact on quality grade and another three density, chlorides, and resdial.sugar they have weak impact on quality and all other variable nearly to zero impact.
 ------
 
 # Final Plots and Summary
