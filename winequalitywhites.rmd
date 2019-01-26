@@ -351,16 +351,52 @@ Because chlorides and residual.sugar have the reverse relationship to alcohol, a
 between density and alcohol, I don't need to make smooth line to see the relationship.
 # Multivariate Plots Section
 
-> **Tip**: Now it's time to put everything together. Based on what you found in
-the bivariate plots section, create a few multivariate plots to investigate
-more complex interactions between variables. Make sure that the plots that you
-create here are justified by the plots you explored in the previous section. If
-you plan on creating any mathematical models, this is the section where you
-will do that.
-
+In this section I'll add each of theses variables (density, residual.sugar, chlorides, total.sulfurdioxide.) to see reacttion for every one on quality and alcohol scatter plot after update in the bivariatte plots section.
 ```{r echo=FALSE, Multivariate_Plots}
-
+ggplot(aes(x = quality, y= alcohol,color =density),data = whitewine)+
+  scale_color_gradientn(colours = rainbow(5))+
+  geom_jitter(width = 1)
+  
 ```
+
+Don't see much variation on Density when hold the alcohol as aconstant, we don't see any change in the color.
+
+```{r echo=FALSE}
+ggplot(aes(x = quality, y= alcohol,color =residual.sugar),data = whitewine)+
+  scale_color_gradientn(colours = rainbow(5))+
+  geom_jitter(width = 1)
+  
+```
+perrty see variation on residual.sugar when hold the alcohol as aconstant, but don't seq. then we don't get best information on this.
+
+```{r echo=FALSE}
+ggplot(aes(x = quality, y= alcohol,color =chlorides),data = whitewine)+
+  scale_color_gradientn(colours = rainbow(5))+
+  geom_jitter(width = 1)
+  
+```
+perrty see variation on chlorides when hold the alcohol as aconstant, but don't seq. then we don't get best information on this.
+
+```{r echo= F}
+ggplot(aes(x = quality, y= alcohol,color =total.sulfur.dioxide),data = whitewine)+
+  scale_color_gradientn(colours = rainbow(5))+
+  geom_jitter(width = 1)
+```
+
+perrty see variation on total.sulfur.dioxide when hold the alcohol as aconstant, but don't seq. then we don't get best information on this.
+
+After I these plot I don't get any good information help to understand the variable that have storng effect on quality like alcohol and other variables have small effect we can make model to compute this effect.
+```{r echo=F}
+m1 <- lm(I(quality)~I(alcohol), data = whitewine)
+m2 <- update( m1, ~ . + density )
+m3 <- update( m2, ~ . + chlorides )
+m4 <- update( m3, ~ . + residual.sugar)
+m5 <- update( m4, ~ . + total.sulfur.dioxide)
+
+mtable(m1,m2,m3,m4,m5, sdigits = 3)
+```
+
+we see from model the prove of my graphs and on my writing because the varible only have strong impact on quality grade and another three density, chlorides, and resdial.sugar they have weak impact on quality and all other variable nearly to zero impact.
 
 # Multivariate Analysis
 
