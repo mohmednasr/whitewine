@@ -215,12 +215,6 @@ I log-transformed the right skewed residual.sugar distributions. The tranformed 
 
 # Bivariate Plots Section
 
-> **Tip**: Based on what you saw in the univariate plots, what relationships
-between variables might be interesting to look at in this section? Don't limit
-yourself to relationships between a main output feature and one of the
-supporting variables. Try to look at relationships between supporting variables
-as well.
-
 ```{r echo=FALSE, message = FALSE, Bivariate_Plots}
 ggpairs(whitewine[ ,2:13],axisLabels = 'internal', lowe = list(continuous = wrap("points", shape = I('.'))))
 ```
@@ -336,19 +330,25 @@ As total.sulfur.dioxide increases the alcohol decreases, I notice it by liner sm
 
 # Bivariate Analysis
 
-> **Tip**: As before, summarize what you found in your bivariate explorations
-here. Use the questions below to guide your discussion.
 
 ### Talk about some of the relationships you observed in this part of the \
 investigation. How did the feature(s) of interest vary with other features in \
 the dataset?
 
+The relationship between quality and alcohol because alcohol is the strongest correlated varible by quality and in the first the realtionship, it's diffcult to see because the value of records on the quality variable is integer and most of points ploting over each other, to sovle this problem I use jitter and transparing function to help me to see the relationship.
+
+The force for this graph and relationships help me to the effect of the other variable on the qulity in multigraph.
+
+
 ### Did you observe any interesting relationships between the other features \
 (not the main feature(s) of interest)?
 
+Alcohol and Chlorides , Alcohol and Residual.Sugar
+
+Because chlorides and residual.sugar have the reverse relationship to alcohol, and chlorides is the amount of salt in the wine, and residual.sugar is the amount of sugar remaining after fermentation stops, it's rare to find wines with less than 1 gram/liter and wines with greater than 45 grams/liter are considered sweet, these not problem but every thing don't have good quality rate between people if it have more slat and more sugar.
 ### What was the strongest relationship you found?
 
-
+between density and alcohol, I don't need to make smooth line to see the relationship.
 # Multivariate Plots Section
 
 > **Tip**: Now it's time to put everything together. Based on what you found in
