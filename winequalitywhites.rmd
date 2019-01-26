@@ -414,6 +414,7 @@ surprising because only one variabel has strong impact on grade of quality.
 strengths and limitations of your model.
 
 I see from model the prove of my graphs and on my writing because the varible only have strong impact on quality grade and another three density, chlorides, and resdial.sugar they have weak impact on quality and all other variable nearly to zero impact.
+
 ------
 
 # Final Plots and Summary
@@ -429,6 +430,7 @@ ggplot(aes(x= quality), data = whitewine)+
 ```
 
 ### Description One
+
 This is the bar Chart for quality variable because quality is integer data type and have only 7 values along the data, and the max number of wines have quality grade equal 6 , min number of wines have quality grade equal 9.
 
 ### Plot Two
@@ -442,6 +444,7 @@ ggplot(aes(x = quality, y= alcohol),data = whitewine)+
 ```
 
 ### Description Two
+
 Descripe the relationship between quality and alcohol by scatter plot but we have problem overploting and quality is integer we need spread point along x-axis, then I applied jitter function and transparing function alpha to solve these problem and after solve, I want to know the relationship between varibales then I make line smooth to know " as Alcohol increases the Quality increases"
 
 ### Plot Three
@@ -455,15 +458,13 @@ ggplot(aes(x = quality, y= alcohol,color =density),data = whitewine)+
 ```
 
 ### Description Three
+
 This is the plot 2 but I add Density variable as color to see the relationship between three variables, the result I didn't show extremly relationship in this graph, because the color of density dependent on y variable "Alcohol" and indpendent on x variable "Quality".
+
 ------
 
 # Reflection
 
-> **Tip**: Here's the final step! Reflect on the exploration you performed and
-the insights you found. What were some of the struggles that you went through?
-What went well? What was surprising? Make sure you include an insight into
-future work that could be done with the dataset.
+The whitewine data set contains information on most 4700 white wines. I started by understanding the individual variables in the data set. and then I explored interesting questions and leads as I continued to make observations on plots. Eventually, I explored the quality of white wins across many variables and created linear model to predict white win quality grade.
 
-> **Tip**: Don't forget to remove this, and the other **Tip** sections before
-saving your final work and knitting the final report!
+I was surpriesd that only one has strong relationship to the quality grade this variable is alcohol and some other variables have weak relationship these variables are density, residual.sugar, chlorides, and total.sulfur.dioxide and others nearly zero relationship to quality grade
