@@ -354,7 +354,7 @@ between density and alcohol, I don't need to make smooth line to see the relatio
 In this section I'll add each of theses variables (density, residual.sugar, chlorides, total.sulfurdioxide.) to see reacttion for every one on quality and alcohol scatter plot after update in the bivariatte plots section.
 ```{r echo=FALSE, Multivariate_Plots}
 ggplot(aes(x = quality, y= alcohol,color =density),data = whitewine)+
-  scale_color_gradientn(colours = rainbow(5))+
+  scale_color_gradientn(colours = terrain.colors(4))+
   geom_jitter(width = 1)
   
 ```
@@ -363,7 +363,7 @@ Don't see much variation on Density when hold the alcohol as aconstant, we don't
 
 ```{r echo=FALSE}
 ggplot(aes(x = quality, y= alcohol,color =residual.sugar),data = whitewine)+
-  scale_color_gradientn(colours = rainbow(5))+
+  scale_color_gradientn(colours = terrain.colors(4))+
   geom_jitter(width = 1)
   
 ```
@@ -371,7 +371,7 @@ perrty see variation on residual.sugar when hold the alcohol as aconstant, but d
 
 ```{r echo=FALSE}
 ggplot(aes(x = quality, y= alcohol,color =chlorides),data = whitewine)+
-  scale_color_gradientn(colours = rainbow(5))+
+  scale_color_gradientn(colours = terrain.colors(4))+
   geom_jitter(width = 1)
   
 ```
@@ -379,7 +379,7 @@ perrty see variation on chlorides when hold the alcohol as aconstant, but don't 
 
 ```{r echo= F}
 ggplot(aes(x = quality, y= alcohol,color =total.sulfur.dioxide),data = whitewine)+
-  scale_color_gradientn(colours = rainbow(5))+
+  scale_color_gradientn(colours = terrain.colors(4))+
   geom_jitter(width = 1)
 ```
 
@@ -418,37 +418,44 @@ I see from model the prove of my graphs and on my writing because the varible on
 
 # Final Plots and Summary
 
-> **Tip**: You've done a lot of exploration and have built up an understanding
-of the structure of and relationships between the variables in your dataset.
-Here, you will select three plots from all of your previous exploration to
-present here as a summary of some of your most interesting findings. Make sure
-that you have refined your selected plots for good titling, axis labels (with
-units), and good aesthetic choices (e.g. color, transparency). After each plot,
-make sure you justify why you chose each plot by describing what it shows.
 
 ### Plot One
 ```{r echo=FALSE, Plot_One}
-
+ggplot(aes(x= quality), data = whitewine)+
+  geom_bar(fill = '#7CFC00')+
+  scale_x_continuous('Quality(score between 0 and 10)',breaks = seq(3,9,1))+
+  scale_y_continuous('Count of Wines')+
+  ggtitle('Quality Bar Chart')
 ```
 
 ### Description One
-
+This is the bar Chart for quality variable because quality is integer data type and have only 7 values along the data, and the max number of wines have quality grade equal 6 , min number of wines have quality grade equal 9.
 
 ### Plot Two
 ```{r echo=FALSE, Plot_Two}
-
+ggplot(aes(x = quality, y= alcohol),data = whitewine)+
+  geom_jitter(alpha = 0.2, width = 1, fill= '#7CFC00', color = 'black',shape = 21)+
+  geom_smooth(method = 'lm',color = 'black')+
+  scale_y_continuous('Alcohol (% by volume)')+
+  scale_x_continuous('Quality (score between 0 and 10)')+
+  ggtitle('Quality by Alcohol')
 ```
 
 ### Description Two
-
+Descripe the relationship between quality and alcohol by scatter plot but we have problem overploting and quality is integer we need spread point along x-axis, then I applied jitter function and transparing function alpha to solve these problem and after solve, I want to know the relationship between varibales then I make line smooth to know " as Alcohol increases the Quality increases"
 
 ### Plot Three
 ```{r echo=FALSE, Plot_Three}
-
+ggplot(aes(x = quality, y= alcohol,color =density),data = whitewine)+
+  scale_color_gradientn(colours = terrain.colors(4),guide = guide_legend(title = 'Density'))+
+  geom_jitter(width = 1)+
+  scale_y_continuous('Alcohol (% by volume)')+
+  scale_x_continuous('Quality (score between 0 and 10)')+
+  ggtitle('Quality vs Alcohol and Density')
 ```
 
 ### Description Three
-
+This is the plot 2 but I add Density variable as color to see the relationship between three variables, the result I didn't show extremly relationship in this graph, because the color of density dependent on y variable "Alcohol" and indpendent on x variable "Quality".
 ------
 
 # Reflection
