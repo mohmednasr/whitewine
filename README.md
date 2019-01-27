@@ -21,4 +21,5 @@ Output variable (based on sensory data):
 
 quality (score between 0 and 10)
 
-
+If you need to know more information about the data check this website
+https://s3.amazonaws.com/udacity-hosted-downloads/ud651/wineQualityInfo.txt
