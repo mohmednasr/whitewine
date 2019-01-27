@@ -70,16 +70,21 @@ just to help you get started.
 I will Explore quality variablbe to know the distribution of it.
 
 ```{r echo=FALSE,message= FALSE , warning= FALSE}
+# plot a histogram for quality
 ggplot(aes(x= quality), data = whitewine)+
   geom_histogram()
 ```
 ```{r echo=FALSE,message= FALSE , warning= FALSE}
+#show the summary for quality
+# plot a histogram for quality
+
 summary(whitewine$quality)
 ```
 
 I improve the graph to get better comment for this graph by make breaks for the x scale and change the bin width becase this varibale have range between 6 intgers numbers.
 
 ```{r echo=FALSE,message= FALSE , warning= FALSE}
+# plot a bar chart for quality
 ggplot(aes(x= quality), data = whitewine)+
   geom_bar()+
   scale_x_continuous(breaks = seq(3,9,1))
@@ -88,6 +93,7 @@ ggplot(aes(x= quality), data = whitewine)+
 More than 2300 wines have guality grade equal 6 and more than 1400 wines have quality grade equal 5 then the nearly of 2800 wines have normal or good reaction for expert and less than 1250 wines have guality grade greater than 6, I will explore variables that help me to understand of distribution of variables and I don't the format of the quality columns to factor because this whlie make me too diffcult to analysis it and make model becuase quality it basic variable.
 
 ```{r echo=FALSE,message= FALSE , warning= FALSE}
+# plot a histogram for fixed.acidity
 ggplot(aes(x= fixed.acidity), data = whitewine)+
   geom_histogram()
 ```
@@ -95,30 +101,36 @@ ggplot(aes(x= fixed.acidity), data = whitewine)+
 Most of wine have fixed acidity between 5.5 and 8, some variable are outlier values at 12, 14.
 
 ```{r echo=FALSE,message= FALSE , warning= FALSE}
+# plot a histogram for volatile.acidity
 ggplot(aes(x= volatile.acidity), data = whitewine)+
   geom_histogram()
 ```
 ```{r echo=FALSE,message= FALSE , warning= FALSE}
+#show the summary for volatile.acidity
 summary(whitewine$volatile.acidity)
 ```
 
 Most of wines have volatile.acitdity between 0.15 and .45 and some wines are outliers greater than 0.9.
 
 ```{r echo=FALSE,message= FALSE , warning= FALSE}
+# plot a histogram for total.sulfur.dioxide
 ggplot(aes(x= total.sulfur.dioxide), data = whitewine)+
   geom_histogram()
 ```
 ```{r echo = FALSE, message=FALSE, warning= FALSE}
+#show the summary for total.sulfur.dioxide
 summary(whitewine$total.sulfur.dioxide)
 ```
 
 Most of wines have total.sulfur.dioxide in range form 100 to 200 and some greater than 280 are outlier.
 
 ```{r echo=FALSE,message= FALSE , warning= FALSE}
+# plot a histogram for pH
 ggplot(aes(x= pH), data = whitewine)+
   geom_histogram()
 ```
 ```{r echo=FALSE,message= FALSE , warning= FALSE}
+#show the summary for pH
 summary(whitewine$pH)
 ```
 
@@ -126,33 +138,41 @@ Most of wines have pH value between 3 and 3.3.
 
 
 ```{r echo=FALSE,message= FALSE , warning= FALSE}
+# plot a histogram for residual.sugar
 ggplot(aes(x= residual.sugar), data = whitewine)+
   geom_histogram()
 ```
 
 The graph is skewed right and I'll apply log function to understand the distribution of the variable.
 ```{r echo=FALSE,message= FALSE , warning= FALSE}
+
+#  improbe in plot a histogram for quality
 ggplot(aes(x= residual.sugar), data = whitewine)+
   geom_histogram()+
   scale_x_log10()
 ```
 ```{r echo=FALSE,message= FALSE , warning= FALSE}
+#show the summary for residual.sugar
 summary(whitewine$residual.sugar)
 ```
 
 I notice the wines are in two group of residual sugar and some values are outliers.
 
 ```{r echo=FALSE,message= FALSE , warning= FALSE}
+# plot a histogram for density
 ggplot(aes(x= density), data = whitewine)+
   geom_histogram()
 ```
 ```{r echo=FALSE,message= FALSE , warning= FALSE}
+#show the summary for density
 summary(whitewine$density)
 ```
 
 The almost of the wines have denisty between 0.98 to 1 and some outliers are larger than 1 and I'll zoom in the next graph for This region.
 
 ```{r echo=FALSE,message= FALSE , warning= FALSE}
+
+# imporve in plot a histogram for density
 ggplot(aes(x= density), data = whitewine)+
   geom_histogram()+
   coord_cartesian(xlim = c(0.985, 1))
@@ -161,31 +181,37 @@ ggplot(aes(x= density), data = whitewine)+
 
 
 ```{r echo=FALSE,message= FALSE , warning= FALSE}
+# plot a histogram for chlorides
 ggplot(aes(x= chlorides), data = whitewine)+
   geom_histogram()
 ```
 ```{r echo=FALSE,message= FALSE , warning= FALSE}
+#show the summary for chlorides
 summary(whitewine$chlorides)
 ```
 
 The almost of wines have value of chlorides between 0 and 0.1, and I think that chlorides don't have extremly control on quality grade.
 
 ```{r echo=FALSE,message= FALSE , warning= FALSE}
+# plot a histogram for sulphates
 ggplot(aes(x= sulphates), data = whitewine)+
   geom_histogram()
 ```
 ```{r echo=FALSE,message= FALSE , warning= FALSE}
+#show the summary for sulphates
 summary(whitewine$sulphates)
 ```
 
 Most of wines have sulphates values between 0.35 and 0.6 and some values are outliers.
 
 ```{r echo = FALSE, message= FALSE, warning = FALSE}
+# plot a histogram for alcohol
 ggplot(aes(x = alcohol), data = whitewine)+
   geom_histogram()+
   scale_x_continuous(breaks = seq(7, 15,1))
 ```
 ```{r echo = FALSE, message=FALSE, warning=FALSE}
+#show the summary for alcohol
 summary(whitewine$alcohol)
 ```
 Most of wines alcohol value between 9 and 11.5 and I think that alcohol predicting grade of the wine quality.
@@ -216,17 +242,21 @@ I log-transformed the right skewed residual.sugar distributions. The tranformed 
 # Bivariate Plots Section
 
 ```{r echo=FALSE, message = FALSE, Bivariate_Plots}
+#plot a matrix plot for all variable
 ggpairs(whitewine[ ,2:13],axisLabels = 'internal', lowe = list(continuous = wrap("points", shape = I('.'))))
 ```
-From the data, density, residual.sugar, chlorides, and total.sulfur.dioxide do not seem to have strong correlations with quality, but density is pretty large and residual.sugar, chlorides, and total.sulfurdioxide moderately  correlated with alcohol. I want to look closer at scatter plots involving quality and some other variables like alcohol, density and residual.sugar.
+
+From the data, density, residual.sugar, chlorides, and total.sulfur.dioxide do not seem to have strong correlations with quality, but density is pretty large and residual.sugar, chlorides, and total.sulfurdioxide moderately  correlated with alcohol. I want to look closer at scatter plots involving quality and some other variables like alcohol, density, volatile.acidity and residual.sugar.
 ```{r echo = FALSE, message= FALSE, warning = FALSE}
+# plot a scatter plot for quality vs alcohol
 ggplot(aes(x = quality, y = alcohol), data = whitewine)+
-  geom_point()
+  geom_jitter()
 ```
 
-My problem now, I can't get best relationship in this graph and overplot because the quality is integer numbers then I'll jitter point to see some imporve in relationship in points between quality and alcohol and use alpha.
+My problem now, I can't get best relationship in this graph and overplot because the quality is integer numbers then I'll jitter points on x-axis and put width equal 1 to see some imporve in relationship in points between quality and alcohol and use alpha.
 
 ```{r echo = FALSE, message= FALSE, warning = T}
+#improve in plot a scatter plot for quality vs alcohol
 ggplot(aes(x = quality, y= alcohol),data = whitewine)+
   geom_jitter(alpha = 0.2, width = 1)+
   geom_smooth(method = 'lm')
@@ -237,6 +267,7 @@ Notice is this pretty good relationship between alcohol and quality, as av the a
 >Note: Because I make jitter for points in x axis in last graph when I graph quality on x-axis then I make jitter for points in x axis for next graphs between (quality - density) and (quality - residual.sugar)
 
 ```{r echo = FALSE, message= FALSE, warning = T}
+# plot a scatter plot for quality vs density
 ggplot(aes(x = quality, y= density),data = whitewine)+
   geom_jitter(alpha = 0.2, width = 1)+
   geom_smooth(method = 'lm')
@@ -245,28 +276,53 @@ ggplot(aes(x = quality, y= density),data = whitewine)+
 I notice a realtion with density but we have three points outliers on y-axis great than 1.005, then I remove them form next graph to see the relationship between quality and density.
 
 ```{r echo = FALSE, message= FALSE, warning = T}
+# improve in plot a scatter plot for quality vs density
 ggplot(aes(x = quality, y= density),data = whitewine)+
   geom_jitter(alpha = 0.2, width = 1)+
   geom_smooth(method = 'lm')+
   coord_cartesian(ylim = c(.985, 1.005))
 
 ```
+
+
 as smooth line when density increases the quality decreases.
 
 >Note: from histogram of residual.sugar in the last section then I'll transform the residual.sugar variable by log function.
 
 ```{r echo = FALSE, message= FALSE, warning = T}
+# plot a scatter plot for quality vs residual.sugar
 ggplot(aes(x = quality, y= residual.sugar),data = whitewine)+
   geom_jitter(alpha = 0.2, width = 1)+
   geom_smooth(method = 'lm')+
   scale_y_log10()
 ```
 
+
 Notice that this very weak realtion ship between quality and residual.sugar.
+
+```{r echo = FALSE, message= FALSE, warning = T}
+# plot a scatter plot for quality vs volatile.acidity
+ggplot(aes(x = quality, y= volatile.acidity),data = whitewine)+
+  geom_jitter(alpha = 0.2, width = 1)+
+  geom_smooth(method = 'lm')
+```
+
+zoom in big clustur of data to see the relationship clearly by remove the points have max. than 99% of volatile.acidity value in volatile.acidity hav
+
+```{r echo = FALSE, message= FALSE, warning = T}
+#improve in plot a scatter plot for quality vs volatile.acidity
+ggplot(aes(x = quality, y= volatile.acidity),data = whitewine)+
+  geom_jitter(alpha = 0.2, width = 1)+
+  geom_smooth(method = 'lm')+
+  coord_cartesian(ylim = c(0.1, quantile(whitewine$volatile.acidity, 0.99)))
+```
+
+as volatile.acidity increases the grade of quality decreases
 
 Next: density is pretty large and residual.sugar, chlorides, and total.sulfurdioxide moderately  correlated with alcohol. I want to look closer at scatter plots involving alcohol and some other variables like density, residual.sugar, chlorides, and total.sulfurdioxide.
 
 ```{r echo = FALSE, message= FALSE, warning = T}
+# plot a scatter plot for alcohol vs density
 ggplot(aes(y = density, x= alcohol),data = whitewine)+
   geom_point()
 ```
@@ -274,6 +330,7 @@ ggplot(aes(y = density, x= alcohol),data = whitewine)+
 I'll remove outliers on axis and solve overploting problem by transpering and jitter function.
 
 ```{r echo = FALSE, message= FALSE, warning = T}
+#improve in plot a scatter plot for alcohol vs density
 ggplot(aes(y = density, x= alcohol),data = whitewine)+
   geom_jitter(alpha = 0.1 , width = 0.1)+
   coord_cartesian(ylim = c(0.985, 1.005))
@@ -282,12 +339,14 @@ ggplot(aes(y = density, x= alcohol),data = whitewine)+
  we don't need to put linear smooth to see the relationship between alcohol and density because it's pretty large relationship as density increases, alcohol decreases.
  
 ```{r echo = FALSE, message= FALSE, warning = T}
+# plot a scatter plot for alcohol vs residual.sugar
 ggplot(aes(x= alcohol, y = residual.sugar),data = whitewine)+
   geom_point()
 ```
 
 I'll apply log functioin to residual.sugar variable and apply jitter function and transpiring to solve problem overploting
 ```{r echo = FALSE, message= FALSE, warning = T}
+#imporve in plot a scatter plot for alcohol vs density
 ggplot(aes(x= alcohol, y = residual.sugar),data = whitewine)+
   geom_jitter(alpha = 0.1 , width = 0.1)+
   scale_y_log10()+
@@ -297,6 +356,7 @@ ggplot(aes(x= alcohol, y = residual.sugar),data = whitewine)+
 Smooth line is help to understand that "as the residual.sugar increases the alcohol decreases"
 
 ```{r echo = FALSE, message= FALSE, warning = T}
+# plot a scatter plot for alcohol vs chlorides
 ggplot(aes(x= alcohol, y = chlorides),data = whitewine)+
   geom_point()
 ```
@@ -304,6 +364,7 @@ ggplot(aes(x= alcohol, y = chlorides),data = whitewine)+
 I'll apply log functioin to chlorides variable and apply jitter function and transpiring to solve problem overploting
 
 ```{r echo = FALSE, message= FALSE, warning = T}
+#improve in plot a scatter plot for alcohol vs density
 ggplot(aes(x= alcohol, y = chlorides),data = whitewine)+
   geom_jitter(alpha = 0.1 , width = 0.1)+
   scale_y_log10()+
@@ -313,6 +374,7 @@ ggplot(aes(x= alcohol, y = chlorides),data = whitewine)+
 As chlorides increases the alcohol decreases, I notice it by liner smooth model to see this relationship 
 
 ```{r echo = FALSE, message= FALSE, warning = T}
+# plot a scatter plot for alcohol vs total.sulfur.dioxide
 ggplot(aes(x= alcohol, y = total.sulfur.dioxide),data = whitewine)+
   geom_point()
 ```
@@ -320,6 +382,7 @@ ggplot(aes(x= alcohol, y = total.sulfur.dioxide),data = whitewine)+
 I'll remove outlier form the y-axis and solve the overploting problem
 
 ```{r echo = FALSE, message= FALSE, warning = T}
+#improve in plot a scatter plot for alcohol vs total.sulfur.dioxide
 ggplot(aes(x= alcohol, y = total.sulfur.dioxide),data = whitewine)+
   geom_jitter(alpha = 0.2, width = 0.1)+
   coord_cartesian(ylim = c(0,300))+
@@ -351,8 +414,10 @@ Because chlorides and residual.sugar have the reverse relationship to alcohol, a
 between density and alcohol, I don't need to make smooth line to see the relationship.
 # Multivariate Plots Section
 
-In this section I'll add each of theses variables (density, residual.sugar, chlorides, total.sulfurdioxide.) to see reacttion for every one on quality and alcohol scatter plot after update in the bivariatte plots section.
+In this section I'll add each of theses variables (density, residual.sugar, chlorides, volatile.acidity) to see reacttion for every one on quality and alcohol scatter plot after update in the bivariatte plots section.
+
 ```{r echo=FALSE, Multivariate_Plots}
+# plot a scatter plot for quality vs alcohol and color by density
 ggplot(aes(x = quality, y= alcohol,color =density),data = whitewine)+
   scale_color_gradientn(colours = terrain.colors(4))+
   geom_jitter(width = 1)
@@ -362,38 +427,46 @@ ggplot(aes(x = quality, y= alcohol,color =density),data = whitewine)+
 Don't see much variation on Density when hold the alcohol as aconstant, we don't see any change in the color.
 
 ```{r echo=FALSE}
+# plot a scatter plot for quality vs alcohol and color by residual.sugar
 ggplot(aes(x = quality, y= alcohol,color =residual.sugar),data = whitewine)+
   scale_color_gradientn(colours = terrain.colors(4))+
   geom_jitter(width = 1)
   
 ```
+
 perrty see variation on residual.sugar when hold the alcohol as aconstant, but don't seq. then we don't get best information on this.
 
 ```{r echo=FALSE}
+# plot a scatter plot for quality vs alcohol and color by chlorides
 ggplot(aes(x = quality, y= alcohol,color =chlorides),data = whitewine)+
   scale_color_gradientn(colours = terrain.colors(4))+
   geom_jitter(width = 1)
   
 ```
+
 perrty see variation on chlorides when hold the alcohol as aconstant, but don't seq. then we don't get best information on this.
 
 ```{r echo= F}
-ggplot(aes(x = quality, y= alcohol,color =total.sulfur.dioxide),data = whitewine)+
+# plot a scatter plot for quality vs alcohol and color by volatile.acidity
+ggplot(aes(x = quality, y= alcohol,color =volatile.acidity),data = whitewine)+
   scale_color_gradientn(colours = terrain.colors(4))+
   geom_jitter(width = 1)
 ```
 
-perrty see variation on total.sulfur.dioxide when hold the alcohol as aconstant, but don't seq. then we don't get best information on this.
+perrty see variation on volatile.acidity when hold the alcohol as aconstant, but don't seq. then we don't get best information on this.
 
 After I these plot I don't get any good information help to understand the variable that have storng effect on quality like alcohol and other variables have small effect we can make model to compute this effect.
+
 ```{r echo=F}
+#model of show the variables that have impact on the grade of quality
 m1 <- lm(I(quality)~I(alcohol), data = whitewine)
 m2 <- update( m1, ~ . + density )
 m3 <- update( m2, ~ . + chlorides )
 m4 <- update( m3, ~ . + residual.sugar)
-m5 <- update( m4, ~ . + total.sulfur.dioxide)
+m5 <- update( m4, ~ . + volatile.acidity)
+m6 <- update( m5, ~ . + pH)
 
-mtable(m1,m2,m3,m4,m5, sdigits = 3)
+mtable(m1,m2,m3,m4,m5,m6, sdigits = 3)
 ```
 
 we see from model the prove of my graphs and on my writing because the varible only have strong impact on quality grade and another three density, chlorides, and resdial.sugar they have weak impact on quality and all other variable nearly to zero impact.
@@ -422,6 +495,7 @@ I see from model the prove of my graphs and on my writing because the varible on
 
 ### Plot One
 ```{r echo=FALSE, Plot_One}
+# plot a Bar Chart for quality
 ggplot(aes(x= quality), data = whitewine)+
   geom_bar(fill = '#7CFC00')+
   scale_x_continuous('Quality(score between 0 and 10)',breaks = seq(3,9,1))+
@@ -435,6 +509,7 @@ This is the bar Chart for quality variable because quality is integer data type 
 
 ### Plot Two
 ```{r echo=FALSE, Plot_Two}
+# plot a scatter plot for quality vs alcohol
 ggplot(aes(x = quality, y= alcohol),data = whitewine)+
   geom_jitter(alpha = 0.2, width = 1, fill= '#7CFC00', color = 'black',shape = 21)+
   geom_smooth(method = 'lm',color = 'black')+
@@ -449,6 +524,7 @@ Descripe the relationship between quality and alcohol by scatter plot but we hav
 
 ### Plot Three
 ```{r echo=FALSE, Plot_Three}
+# plot a scatter plot for quality vs alcohol and color by density
 ggplot(aes(x = quality, y= alcohol,color =density),data = whitewine)+
   scale_color_gradientn(colours = terrain.colors(4),guide = guide_legend(title = 'Density'))+
   geom_jitter(width = 1)+
@@ -467,4 +543,6 @@ This is the plot 2 but I add Density variable as color to see the relationship b
 
 The whitewine data set contains information on most 4700 white wines. I started by understanding the individual variables in the data set. and then I explored interesting questions and leads as I continued to make observations on plots. Eventually, I explored the quality of white wins across many variables and created linear model to predict white win quality grade.
 
-I was surpriesd that only one has strong relationship to the quality grade this variable is alcohol and some other variables have weak relationship these variables are density, residual.sugar, chlorides, and total.sulfur.dioxide and others nearly zero relationship to quality grade
+I was surpriesd that only one has strong relationship to the quality grade this variable is alcohol and some other variables have weak relationship these variables are density, residual.sugar, chlorides, pH, and volatile.acidity and others nearly zero relationship to quality grade.
+
+The model was able to account for 27.1% of the variance in the dataset, I have some limitations of this model include the source of The data, I would be interested in testing the linear model to predict current grade of quality and to determine to what extent model is accurate at grading quality of white winse. 
